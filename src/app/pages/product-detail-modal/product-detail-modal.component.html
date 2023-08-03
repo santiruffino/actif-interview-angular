@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ product.title }}</h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  ></button>
+</div>
+<div class="modal-body">
+  <div class="text-center">
+    <img
+      class="card-img-top w-25"
+      src="{{ product.image }}"
+      alt="{{ product.title }}"
+    />
+  </div>
+  <p class="text-center">{{ product.category }}</p>
+  <p class="text-start">{{ product.description }}</p>
+  <div class="row">
+    <div class="col-6">Price:</div>
+    <div class="col-6 text-end">{{ product.price | currency }}</div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-outline-dark"
+    (click)="activeModal.close('Close click')"
+  >
+    Close
+  </button>
+</div>

@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 w-100">
+      <div class="row">
+        <div class="col-6">
+          <h2 class="text-dark mt-5">Product List App</h2>
+        </div>
+        <div class="col-6 text-end mt-5">
+          <button type="submit" class="btn btn-danger" (click)="logout()">
+            Logout
+          </button>
+        </div>
+
+        <div class="row">
+          <div class="col-8=9 card mt-5">
+            <div class="row">
+              <form [formGroup]="filterForm">
+                <div class="col-5 m-2">
+                  <label>Category: </label>
+                  <select
+                    (change)="filterCategories($event)"
+                    formControlName="category"
+                  >
+                    <option [value]="">All</option>
+                    <option
+                      *ngFor="let category of categoriesArray"
+                      [value]="category"
+                    >
+                      {{ category }}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-3 m-2">
+                  <label>Limit: </label>
+                  <select
+                    (change)="filterLimit($event)"
+                    formControlName="limit"
+                  >
+                    <option *ngFor="let limit of limitArray" [value]="limit">
+                      {{ limit }}
+                    </option>
+                  </select>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="row my-5">
+            <div class="col-12 card">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Price</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let product of productsListShow; index as i">
+                    <th scope="row">{{ product.id }}</th>
+                    <td>
+                      {{ product.title }}
+                    </td>
+                    <td>{{ product.category }}</td>
+                    <td>{{ product.price | currency }}</td>
+                    <td>
+                      <button
+                        type="submit"
+                        class="btn btn-success"
+                        (click)="openProductDetailsModal(product)"
+                      >
+                        View
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

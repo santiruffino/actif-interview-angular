@@ -1,0 +1,92 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h2 class="text-center text-dark mt-5">Product List App</h2>
+      <div class="card my-5">
+        <form
+          class="card-body cardbody-color p-lg-5"
+          [formGroup]="loginForm"
+          (ngSubmit)="onSubmit()"
+        >
+          <div class="text-center">
+            <img
+              src="https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397__340.png"
+              class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
+              width="200px"
+              alt="profile"
+            />
+          </div>
+
+          <div class="mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="Username"
+              aria-describedby="emailHelp"
+              placeholder="User Name"
+              formControlName="email"
+              [ngClass]="{
+                'is-invalid': emailForm.invalid && emailForm.touched,
+                'is-valid': emailForm.valid
+              }"
+            />
+            <div
+              *ngIf="
+                emailForm.invalid && (emailForm.dirty || emailForm.touched)
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="emailForm.errors?.['required']">
+                Email is required.
+              </div>
+              <div *ngIf="emailForm.errors?.['pattern']">
+                Email pattern is not correct.
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              placeholder="Password"
+              formControlName="password"
+              [ngClass]="{
+                'is-invalid': passwordForm.invalid && passwordForm.touched,
+                'is-valid': passwordForm.valid
+              }"
+            />
+            <div
+              *ngIf="
+                passwordForm.invalid &&
+                (passwordForm.dirty || passwordForm.touched)
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="passwordForm.errors?.['required']">
+                Password is required.
+              </div>
+              <div *ngIf="passwordForm.errors?.['minlength']">
+                Password must be at least 6 characters long.
+              </div>
+            </div>
+          </div>
+          <div *ngIf="error" class="alert alert-danger mt-3 mb-3">
+            {{ error }}
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-success px-5 mb-5 w-100">
+              Login
+            </button>
+          </div>
+          <div class="form-text text-center text-dark">
+            <strong>User:</strong> user@demo.com
+          </div>
+          <div class="form-text text-center mb-5 text-dark">
+            <strong>Password:</strong> 123456
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
